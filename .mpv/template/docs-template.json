@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "engine": "docusaurus",
+  "adapterKey": "docusaurus",
+  "engineVersion": "^3.0.0",
+  "content": {
+    "docsTarget": "docs",
+    "staticTarget": "static"
+  },
+  "build": {
+    "packageManager": "npm",
+    "installCommand": "npm install",
+    "buildCommand": "npm run build",
+    "outputDir": "build"
+  },
+  "runtimeConfig": {
+    "siteUrlEnv": "DOCS_SITE_URL",
+    "basePathEnv": "DOCS_BASE_PATH",
+    "titleEnv": "DOCS_TITLE",
+    "portalNameEnv": "DOCS_PORTAL_NAME",
+    "portalUrlEnv": "DOCS_PORTAL_URL"
+  }
+}
