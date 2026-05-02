@@ -13,3 +13,7 @@ export async function replaceDirectory(source, target) {
     await mkdir(path.dirname(target), { recursive: true });
     await cp(source, target, { recursive: true, force: true });
 }
+export async function mergeDirectory(source, target) {
+    await mkdir(target, { recursive: true });
+    await cp(source, target, { recursive: true, force: true });
+}

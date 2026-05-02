@@ -1,6 +1,6 @@
 import { access, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { replaceDirectory, resolveInside } from "../fs.js";
+import { mergeDirectory, replaceDirectory, resolveInside } from "../fs.js";
 async function exists(file) {
     try {
         await access(file);
@@ -19,7 +19,7 @@ export const docusaurusAdapter = {
         if (publication.content.staticSourcePath && manifest.content.staticTarget) {
             const staticSource = resolveInside(siteDir, publication.content.staticSourcePath);
             if (await exists(staticSource))
-                await replaceDirectory(staticSource, resolveInside(templateDir, manifest.content.staticTarget));
+                await mergeDirectory(staticSource, resolveInside(templateDir, manifest.content.staticTarget));
         }
         const envFile = path.join(templateDir, ".env.production");
         await writeFile(envFile, [

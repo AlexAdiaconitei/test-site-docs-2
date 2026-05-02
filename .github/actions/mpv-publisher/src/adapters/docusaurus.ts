@@ -1,7 +1,7 @@
 import { access, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { DocumentationEngineAdapter } from "../types.js";
-import { replaceDirectory, resolveInside } from "../fs.js";
+import { mergeDirectory, replaceDirectory, resolveInside } from "../fs.js";
 
 async function exists(file: string) {
   try { await access(file); return true; } catch { return false; }
@@ -16,7 +16,7 @@ export const docusaurusAdapter: DocumentationEngineAdapter = {
 
     if (publication.content.staticSourcePath && manifest.content.staticTarget) {
       const staticSource = resolveInside(siteDir, publication.content.staticSourcePath);
-      if (await exists(staticSource)) await replaceDirectory(staticSource, resolveInside(templateDir, manifest.content.staticTarget));
+      if (await exists(staticSource)) await mergeDirectory(staticSource, resolveInside(templateDir, manifest.content.staticTarget));
     }
 
     const envFile = path.join(templateDir, ".env.production");
