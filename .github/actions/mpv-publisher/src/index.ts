@@ -3,9 +3,13 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { execFileSync, execSync } from "node:child_process";
 import { docusaurusAdapter } from "./adapters/docusaurus.js";
+import { fumadocsAdapter } from "./adapters/fumadocs.js";
 import type { DocumentationEngineAdapter, PublicationConfig, TemplateManifest } from "./types.js";
 
-const adapters = new Map<string, DocumentationEngineAdapter>([[docusaurusAdapter.key, docusaurusAdapter]]);
+const adapters = new Map<string, DocumentationEngineAdapter>([
+  [docusaurusAdapter.key, docusaurusAdapter],
+  [fumadocsAdapter.key, fumadocsAdapter],
+]);
 
 function input(name: string, fallback = "") {
   return process.env[`INPUT_${name.toUpperCase().replace(/-/g, "_")}`] ?? fallback;
